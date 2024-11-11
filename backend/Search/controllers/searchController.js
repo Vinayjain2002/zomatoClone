@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator");
 const City = require("../../City/models/City");
 const Restaurant = require("../../Restaurants/models/Restaurant");
 
+// validation is checking at the router defination side
 const validateBody = validationResult.withDefaults({
   formatter: (err) => {
     return {

@@ -44,6 +44,7 @@ const sendOtp = async (email, name) => {
       return false;
     } else {
       try {
+        // if the otp object exists and we need to update the otp
         let otp = await Otp.findOne({ email: email });
         if (otp) {
           await Otp.updateOne({ email: email }, { otp: otp });
@@ -60,6 +61,7 @@ const sendOtp = async (email, name) => {
 
   return otp;
 };
+
 
 const register = async (req, res) => {
   const errors = validateBody(req);
@@ -94,6 +96,7 @@ const verifyRegisterOtp = async (req, res) => {
   const { otp, email } = req.body;
 
   try {
+    // there may be a case that the user has not been registered yet
     let user = await Otp.find({ email: email });
     if (user[0]) {
       if (user[0].otp == otp) {
@@ -144,6 +147,7 @@ const verifyLoginOtp = async (req, res) => {
   const { otp, email } = req.body;
 
   try {
+    // fetching the otp
     let realOtp = await Otp.findOne({ email: email });
     let user = await User.findOne({ email: email });
     if (realOtp) {
@@ -161,6 +165,7 @@ const verifyLoginOtp = async (req, res) => {
   }
 };
 
+// left to be checked
 const googleRegister = async (req, res) => {
   const errors = validateBody(req);
   if (!errors.isEmpty()) {

@@ -20,6 +20,7 @@ function Home(props) {
     let result = await getCityId(initialPayload);
     getCityCollection(result.cityId);
   };
+
   useEffect(() => {
     initialData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -58,11 +59,7 @@ https://b.zmtcdn.com/web_assets/b69badeeb9ef00f59428b4c09ef4c1901575873261.png"
   return (
     <div>
       <Switch>
-        <Route
-          exact
-          path="/"
-          render={() =>
-            searchCity && (
+        <Route exact  path="/" render={() =>  searchCity && (
               <Redirect to={{ pathname: `/${searchCity.toLowerCase()}` }} />
             )
           }
@@ -91,6 +88,8 @@ https://b.zmtcdn.com/web_assets/b69badeeb9ef00f59428b4c09ef4c1901575873261.png"
     </div>
   );
 }
+
+// the searchCity need to be understand along with its working
 const mapStateToProps = (state) => ({
   searchCity: state.landingPageReducer.searchCity,
 });

@@ -16,6 +16,7 @@ const addRestaurant = async (req, res) => {
   }
 };
 
+// adding the photos in the restaurant data
 const addPhoto = async (req, res) => {
   const restaurant = await Restaurant.findOne({ id: req.body["res_id"] });
   if (restaurant) {
@@ -41,8 +42,8 @@ const addMenu = async (req, res) => {
   const restaurant = await Restaurant.findOne({ id: req.body["res_id"] });
   if (restaurant) {
     try {
-      let { menu } = req.body;
-      restaurant.menu = [...restaurant.menu, ...menu];
+      let { newmenu } = req.body;
+      restaurant.menu = [...restaurant.menu, ...newmenu];
       await restaurant.save();
       return res.json({ err: false, message: "Menu  added successfully" });
     } catch (err) {

@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const addressSchema = new Schema({ 
+  address: { type: String, required: true, },
+   type: { type: String, required: true, }
+   });
+
+
 const userSchema = new Schema({
   id: {
     type: String,
@@ -19,7 +25,7 @@ const userSchema = new Schema({
     type: Number,
   },
   address: {
-    type: Array,
+    type: [addressSchema],
     default: [],
   },
   orders: {
